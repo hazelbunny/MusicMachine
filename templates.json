@@ -3,32 +3,32 @@
       "role":"melody",
       "bars":"4",
       "strum_patterns":
-          {
-          "1":"1111",
-          "2":"1011",
-          "3":"1001"
-          },
-      "filepath":"/home/pi/Documents/TTIP/"
+          [
+          "1111",
+          "1011",
+          "1001"
+          ],
+      "octaves": ["4"]
    },
    "2":{
       "role":"drums",
       "bars":"4",
       "strum_patterns":
-          {
-          "1":"1212",
-          "2":"1012",
-          "3":"10301032"
-          },
-      "filepath":"/home/pi/Documents/TTIP/"
+          [
+          "1212",
+          "1012",
+          "10301032"
+          ],
+      "octaves": ["4"]
    },
    "3":{
       "role":"chords",
       "bars":"4",
       "strum_patterns":
-          {
-          "1":"1110",
-          "2":"1010"
-          },
+          [
+          "1110",
+          "1010"
+          ],
       "filepath":"/home/pi/Documents/TTIP/"
    }
 }
