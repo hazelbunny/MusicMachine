@@ -1,35 +1,35 @@
 {
    "1":{
       "role":"melody",
-      "bars":"4",
-      "strum_patterns": #melody strum patterns of form 0 = 100% rest, 1 = 100% play, 2=100% tie, 3=50% tie, 50% play, 4=50% rest, 50% tie
+      "bars":4,
+      "strum_patterns":
           [
           "1331",
           "1413",
           "1441",
           "12301413"
           ],
-      "octaves": ["4"]
+      "octaves": [4,3]
    },
    "2":{
       "role":"drums",
-      "bars":"4",
+      "bars":4,
       "strum_patterns":
           [
           "1212",
           "1012",
           "10301032"
           ],
-      "octaves": ["4"]
+      "octaves": []
    },
    "3":{
       "role":"chords",
-      "bars":"4",
+      "bars":4,
       "strum_patterns":
           [
-          "1110",
-          "1010"
+          "1114",
+          "1414"
           ],
-      "filepath":"/home/pi/Documents/TTIP/"
+      "octaves": [4]
    }
 }
