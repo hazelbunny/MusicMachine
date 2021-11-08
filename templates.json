@@ -1,35 +1,98 @@
 {
-   "1":{
-      "role":"melody",
-      "bars":4,
-      "strum_patterns":
-          [
-          "1331",
-          "1413",
-          "1441",
-          "12301413"
-          ],
-      "octaves": [4,3]
-   },
-   "2":{
-      "role":"drums",
-      "bars":4,
-      "strum_patterns":
-          [
-          "1212",
-          "1012",
-          "10301032"
-          ],
-      "octaves": []
-   },
-   "3":{
-      "role":"chords",
-      "bars":4,
-      "strum_patterns":
-          [
-          "1114",
-          "1414"
-          ],
-      "octaves": [4]
-   }
+	"drums": {
+		"weight": 100,
+		"limit": 2,
+		"kick_samples": {
+			"heavy": {
+				"weight": 100
+			},
+			"chip": {
+				"weight": 10
+			}
+		},
+		"snare_samples": {},
+		"closed_hat_samples": {},
+		"open_hat_samples": {},
+		"clap_samples": {},
+
+		"patterns": [{
+				"weight": 100,
+				"pattern": [
+					["kick", "snare"],
+					["kick"],
+					[],
+					["snare"]
+				]
+			},
+			{
+				"weight": 200,
+				"pattern": [
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[],
+					[]
+				]
+			}
+
+		]
+	},
+
+
+	"chords": {
+		"synth": {
+			"prophet": {
+				"weight": 100
+			},
+			"piano": {
+				"weight": 100
+			}
+
+		}
+	},
+
+	"arpeggios": {
+		"": {}
+	},
+	"pads": {
+		"": {}
+	},
+	"melody": {
+		"": {}
+	},
+	"fx": {
+		"weight": 100,
+		"limit": 2,
+		"kick_samples": {
+			"heavy": {
+				"weight": 100
+			},
+			"chip": {
+				"weight": 10
+			}
+		},
+		"samples": {
+			"noise": 100,
+			"noise2": 200
+		},
+
+		"patterns": [{
+				"weight": 100,
+				"pattern": [{
+						"kick": 30,
+						"snare": 40
+					},
+					{}, {}, {}
+				]
+			},
+			{
+				"weight": 200,
+				"pattern": [{}, {}, {}, {}, {}, {}, {}, {}]
+			}
+
+		]
+	}
 }
