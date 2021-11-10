@@ -38,10 +38,29 @@ beat_length = 60/140
 bar_length = beat_length * TIME_SIGNATURE_TOP
 #Calculating how long beats and bars are.
 
+RODEO = Synth("rodeo")
+PNOISE = Synth("pnoise")
+KALIMBA = Synth("kalimba")
 
 tracklist = []
 
-synthlist = {"melody":[BEEP,PROPHET,PIANO],"chords":[MOD_PULSE],"drums":[PRETTY_BELL]}
+synthlist = {"melody":[BEEP,PROPHET,PIANO,BLADE,CHIPBASS,DPULSE,DSAW,HOOVER,PULSE,RODEO],
+             "chords":[CHIPBASS,DSAW,DULL_BELL,HOLLOW,PULSE,RODEO,SUBPULSE,TECHSAWS],
+             "drums":[PRETTY_BELL,BNOISE,CHIPNOISE,CNOISE,GNOISE,NOISE,PNOISE],
+             "arpeggio":[BEEP,PROPHET,PIANO,BLADE,CHIPBASS,DARK_AMBIENCE,DPULSE,DSAW,KALIMBA,PLUCK,
+                         RODEO,SUBPULSE,ZAWA],
+             "bass":[CHIPBASS,FM,SUPERSAW],
+             "pad":[MOD_PULSE,DARK_AMBIENCE,DTRI,GROWL,TB303]
+        }
+
+samplelist = {"bass":[],
+              "snare":[],
+              "open_high_hat":[],
+              "closed_high_hat":[],
+              "other":[],
+              "effect":[]
+    
+        }
 
 class Track:
     def __init__(self):
@@ -125,8 +144,15 @@ class Track:
         bar = self.bars[global_bar%len(self.bars)]
         position = 1
         sleeptime=bar_length/len(bar)
+        
+        
+        
+        
+        
+        
+        """
         for i in bar:
-            if i == "tie":
+            if str(i) == "tie":
                 pass
             elif type(i) == numpy.int32 or type(i) == list or type(i) == int:
                 asdr=self.default_asdr.copy()
@@ -143,12 +169,21 @@ class Track:
                         play(note,**asdr)
             elif type(i) == samples.Sample:
                 sample(i)
-            elif i == "chord":
-                for note in chord_sequence[bar%len(chord_sequence)]:
-                    play(note, **asdr)
+            elif str(i) == "chord":
+                asdr = self.default_asdr
+                asdr["release"]=2
+                for note in chord_sequence[global_bar%len(chord_sequence)].notes:
+                    play(note.number, **asdr)
                 
             time.sleep(sleeptime)
             position +=1
+            
+            """
+    def set_values(self,**kwargs):
+        if "synth" in kwargs:
+            self.synth=kwargs["synth"]
+        if "role" in kwargs:
+            self.role=kwargs["role"]
         
 
 
@@ -192,6 +227,15 @@ for i in range(1,CHORD_SEQUENCE_LENGTH):
 #    else:
     chord_sequence.append(chord_from_key(KEY_SIGNATURE, KEY_TONALITY))
 
+chord_track = Track()
+chord_track.set_values(role="chords",synth=PIANO)
+print(chord_track.bars)
+for b in chord_track.bars:
+    b.clear()
+    b.append("chord")
+print(chord_track.bars)
+
+tracklist.append(chord_track)
 
 bar = 1
 print(chord_sequence)

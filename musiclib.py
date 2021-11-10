@@ -3,26 +3,43 @@ import json
 import random
 import musthe
 
-modifiers = {
-    'maj':    100,
-    'min':    120,
+major_modifiers = {
+    'maj':    120,
     'aug':    20,
-    'dim':    10,
     'dom7':   40,
-    'min7':   50,
     'maj7':   40,
-    'aug7':   20,
+    'aug7':   20
+    }
+minor_modifiers = {
+    'min':    70,
+    'min7':   50,
+    }
+modifiers = {
+    'dim':    10,
     'dim7':   2,
     'm7dim5': 1,
-    'sus2':   10,
-    'sus4':   10,
     'open5':  10
     }
+
+modifiers.update(major_modifiers)
+modifiers.update(minor_modifiers)
 modifier_list = []
 mod_weights = []
 for key in modifiers:
     modifier_list.append(key)
     mod_weights.append(modifiers[key])
+
+minor_modifiers_list = []
+minor_modifiers_weights = []
+for key in minor_modifiers:
+    minor_modifiers_list.append(key)
+    minor_modifiers_weights.append(minor_modifiers[key])
+
+major_modifiers_list = []
+major_modifiers_weights = []
+for key in major_modifiers:
+    major_modifiers_list.append(key)
+    major_modifiers_weights.append(major_modifiers[key])
 
 default_config = {
     "BEATS_PER_MINUTE":140,
@@ -93,19 +110,28 @@ def get_input():
         shuffle_most_recent()
     elif str_in in ["magic","m","brown"]:
         magic()
-        
 
 
 
 def chord_from_key(key, tonality):
     modifiers = str()
-    if pc(7):
-        root = random.choice(musthe.Scale(key,tonality))
+    scale = musthe.Scale(key,tonality)
+    if pc(24):
+        root = random.choice(scale)
         modifier = random.choices(modifier_list,mod_weights,k=1)[0]
         return musthe.Chord(root,modifier)
     else:
-        root = random.choice(musthe.Scale(key,tonality))
-        return musthe.Chord(root,"maj")
+        root = random.choice(scale)
+        degree = scale.notes.index(musthe.Note(str(root)+"0"))
+        if tonality == "major":
+            modifier = ['maj','min','min','maj','maj','min','dim'][degree]
+        elif tonality == "minor":
+            modifier = ['min','dim','maj','min','min','maj','maj'][degree]
+        if modifier == 'major':
+            modifier = random.choices(major_modifiers_list,major_modifiers_weights,k=1)[0]
+        elif modifier == "minor":
+            modifier = random.choices(minor_modifiers_list,minor_modifiers_weights,k=1)[0]
+        return musthe.Chord(root,modifier)
 
 
 def make_chord(key, tonality):
