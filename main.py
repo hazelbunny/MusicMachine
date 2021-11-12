@@ -4,9 +4,9 @@ from json import load as json_load
 from numpy import random
 from musthe import *
 from musiclib import *
-import gpiohelper
 from time import sleep
-
+from gpiozero import Button
+from DrumTrack import DrumTrack
 
 
 
@@ -51,26 +51,25 @@ def delete_most_recent():
         delete_thread(tracklist.pop(len(tracklist)-1))
 
 def add_new_track():
-    new_track(templates,tracklist,config["CHORD_SEQUENCE_LENGTH"])
-    if config["DEBUG"]: print("new track: "+str(tracklist[len(tracklist)-1])+"with bars: "+str(tracklist[len(tracklist)-1].bars))
+    if True:
+        tracklist.append(DrumTrack([templates,globals()]))
+    if DEBUG: print("new track: "+str(tracklist[len(tracklist)-1])+"with bars: "+str(tracklist[len(tracklist)-1].bars))
 
 def magic():
     print("hello world")
 if GPIO_MODE:
     #Sets the GPIO pins which relate to the control panel. If you wish to execute this code on
     #A computer without GPIO out, remove this.
-    gpiohelper.blue_button.when_pressed = gpiohelper.add_new_track
-    gpiohelper.red_button.when_pressed = gpiohelper.delete_most_recent
-    gpiohelper.black_button.when_pressed = gpiohelper.shuffle_most_recent
-    gpiohelper.brown_button.when_pressed = gpiohelper.magic
+    blue_button.when_pressed = add_new_track
+    red_button.when_pressed = delete_most_recent
+    black_button.when_pressed = shuffle_most_recent
+    brown_button.when_pressed = magic
 
 
 chord_sequence=new_chord_sequence(KEY_SIGNATURE,KEY_TONALITY,CHORD_SEQUENCE_LENGTH)
 
 tracklist = []
-gpiohelper.tracklist = tracklist
-gpiohelper.set_config(config)
-gpiohelper.templates = templates
+
 
 bar = 1
 print(chord_sequence)

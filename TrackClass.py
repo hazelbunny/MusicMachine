@@ -50,7 +50,8 @@ class Track:
         else:
             return random.choice(chord_sequence[self.cur_bar%len(chord_sequence)].notes).number
     
-    
+    def update_config(glob_vars):
+        self.config = glob_vars
     
     @threaded
     def tick(self, global_bar):
