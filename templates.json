@@ -1,98 +1,240 @@
 {
-	"drums": {
-		"weight": 100,
-		"limit": 2,
-		"kick_samples": {
-			"heavy": {
-				"weight": 100
-			},
-			"chip": {
-				"weight": 10
-			}
-		},
-		"snare_samples": {},
-		"closed_hat_samples": {},
-		"open_hat_samples": {},
-		"clap_samples": {},
+    "drums": {
+        "weight": 100,
+        "limit": 2,
+        "kick_samples": {
+            "drum_heavy_kick":{
+                "weight":100,
+                "duration":1
+                }
+            },
+        "bass_samples": {
+            "bd_ada": {
+                "weight": 20
+            },
+            "bd_pure": {
+                "weight": 20
+            },
+            "bd_808": {
+                "weight": 100
+            },
+            "bd_zum": {
+                "weight": 80
+            },
+            "bd_sone": {
+                "weight": 20
+            },
+            "bd_haus": {
+                "weight": 100
+            },
+            "bd_zome": {
+                "weight": 20
+            },
+            "bd_tek": {
+                "weight": 40
+            },
+            "bd_mehackit": {
+                "weight": 20
+            }
+        },
+        "snare_samples": {
+            "drum_snare_hard": {
+                "weight": 100
+            },
+            "drum_snare_soft": {
+                "weight": 10
+            },
+            "elec_lo_snare": {
+                "weight": 10
+            },
+            "sn_dub": {
+                "weight": 100
+            },
+            "sn_dolf": {
+                "weight": 100
+            },
+            "sn_zome": {
+                "weight": 200
+            },
+            "sn_generic": {
+                "weight": 10
+            }
+        },
+        "closed_hat_samples": {
+            "drum_cymbal_closed": {
+                "weight": 10
+            }
+        },
+        "open_hat_samples": {
+            "drum_cymbal_open": {
+                "weight": 10
+            }
+        },
+        "clap_samples": {
+            "perc_snap": {
+                "weight": 10
+            }
+        },
+        "tom_samples": {
+            "drum_tom_mid_soft": {
+                "weight": 10
+            },
+            "drum_tom_mid_hard": {
+                "weight": 100
+            }
+        },
+        "scratch_samples": {
+            "vinyl_scratch": {
+                "weight": 100
+            }
+        },
+        "other_samples": {
+            "drum_cowbell": {
+                "weight": 10
+            },
+            "elec_wood": {
+                "weight": 10
+            },
+            "glitch_perc1": {
+                "weight": 10
+            },
+            "glitch_perc2": {
+                "weight": 10
+            },
+            "glitch_perc3": {
+                "weight": 10
+            },
+            "glitch_perc4": {
+                "weight": 10
+            },
+            "perc_snap": {
+                "weight": 40
+            },
+            "perc_snap2": {
+                "weight": 10
+            }
+        },
+      
+        "patterns": [{
+                "weight": 100,
+                "pattern": [
+                    {"kick":100, "snare":100},
+                    {"kick":100},
+                    {},
+                    {"snare":100}
+                ]
+            },
+            {
+                "weight": 200,
+                "pattern": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ]
+            }
 
-		"patterns": [{
-				"weight": 100,
-				"pattern": [
-					["kick", "snare"],
-					["kick"],
-					[],
-					["snare"]
-				]
-			},
-			{
-				"weight": 200,
-				"pattern": [
-					[],
-					[],
-					[],
-					[],
-					[],
-					[],
-					[],
-					[]
-				]
-			}
-
-		]
-	},
+        ]
+    },
 
 
-	"chords": {
-		"synth": {
-			"prophet": {
-				"weight": 100
-			},
-			"piano": {
-				"weight": 100
-			}
+    "chords": {
+        "synth": {
+            "chipbass": {
+                "weight": 100
+            },
+            "dsaw": {
+                "weight": 100
+            },
+            "dull_bell": {
+                "weight": 100
+            },
+            "hollow": {
+                "weight": 100
+            },
+            "pulse": {
+                "weight": 100
+            },
+            "rodoe": {
+                "weight": 100
+            },
+            "subpulse": {
+                "weight": 100
+            },
+            "techsaws": {
+                "weight": 100
+            }
+        },
+        "patterns": [{
+                "weight": 100,
+                "pattern": [
+                    ["kick", "snare"],
+                    ["kick"],
+                    [],
+                    ["snare"]
+                ]
+            },
+            {
+                "weight": 200,
+                "pattern": [
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    []
+                ]
+            }
 
-		}
-	},
+        ]
 
-	"arpeggios": {
-		"": {}
-	},
-	"pads": {
-		"": {}
-	},
-	"melody": {
-		"": {}
-	},
-	"fx": {
-		"weight": 100,
-		"limit": 2,
-		"kick_samples": {
-			"heavy": {
-				"weight": 100
-			},
-			"chip": {
-				"weight": 10
-			}
-		},
-		"samples": {
-			"noise": 100,
-			"noise2": 200
-		},
+        },
 
-		"patterns": [{
-				"weight": 100,
-				"pattern": [{
-						"kick": 30,
-						"snare": 40
-					},
-					{}, {}, {}
-				]
-			},
-			{
-				"weight": 200,
-				"pattern": [{}, {}, {}, {}, {}, {}, {}, {}]
-			}
+    "arpeggios": {
+        "": {}
+    },
+    "pads": {
+        "": {}
+    },
+    "melody": {
+        "": {}
+    },
+    "fx": {
+        "weight": 100,
+        "limit": 2,
+        "kick_samples": {
+            "heavy": {
+                "weight": 100
+            },
+            "chip": {
+                "weight": 10
+            }
+        },
+        "samples": {
+            "noise": 100,
+            "noise2": 200
+        },
 
-		]
-	}
+        "patterns": [{
+                "weight": 100,
+                "pattern": [{
+                        "kick": 30,
+                        "snare": 40
+                    },
+                    {}, {}, {}
+                ]
+            },
+            {
+                "weight": 200,
+                "pattern": [{}, {}, {}, {}, {}, {}, {}, {}]
+            }
+
+        ]
+    }
 }

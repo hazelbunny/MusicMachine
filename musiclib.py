@@ -89,7 +89,7 @@ def threaded(fn):
     def wrapper(*args, **kwargs):
         Thread(target=fn, args=args, kwargs=kwargs).start()
     return wrapper
-#Means anything marked @in_thread will run in its own thread, ie multiple threaded functions can
+#Means anything marked @threaded will run in its own thread, ie multiple threaded functions can
 #run at the same time.
 
 
@@ -111,6 +111,15 @@ def get_input():
     elif str_in in ["magic","m","brown"]:
         magic()
 
+def new_chord_sequence(KEY_SIGNATURE,KEY_TONALITY,CHORD_SEQUENCE_LENGTH):
+    chord_sequence = []
+    chord_sequence.append(make_chord(KEY_SIGNATURE,KEY_TONALITY))
+    for i in range(1,CHORD_SEQUENCE_LENGTH):
+        if (i==2 and pc(50)):
+            chord_sequence.append(chord_sequence[i-1])
+        else:
+            chord_sequence.append(chord_from_key(KEY_SIGNATURE, KEY_TONALITY))
+    return chord_sequence
 
 
 def chord_from_key(key, tonality):
@@ -142,3 +151,26 @@ def make_chord(key, tonality):
     elif tonality == "minor":
         chord_name+="m"
     return musthe.Chord(chord_name)
+
+def weighted_choice(dictionary,**kwargs):
+    key_list = []
+    weights = []
+    for key in dictionary:
+        key_list.append(key)
+        weights.append(dictionary[key]["weight"])
+    r =  random.choices(key_list,weights,k=1)[0]
+    if "sample" in kwargs and kwargs["sample"] == True:
+        if "duration" in dictionary[r]:
+            return r, dictionary[r]["duration"]
+        else:
+            return r, 1
+    else:
+        return r
+def return_pattern(pattern_dict):
+    pattern_list = []
+    weights = []
+    for pattern in pattern_dict:
+        pattern_list.append(pattern)
+        weights.append(pattern["weight"])
+    r =  random.choices(pattern_list,weights,k=1)[0]
+    return r
