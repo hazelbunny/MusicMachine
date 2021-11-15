@@ -7,6 +7,7 @@ from musiclib import *
 from time import sleep
 from gpiozero import Button
 from DrumTrack import DrumTrack
+from ChordsTrack import ChordsTrack
 
 
 
@@ -51,8 +52,10 @@ def delete_most_recent():
         delete_thread(tracklist.pop(len(tracklist)-1))
 
 def add_new_track():
-    if True:
+    if False:
         tracklist.append(DrumTrack([templates,globals()]))
+    elif True:
+        tracklist.append(ChordsTrack([templates,globals()]))
     if DEBUG: print("new track: "+str(tracklist[len(tracklist)-1])+"with bars: "+str(tracklist[len(tracklist)-1].bars))
 
 def magic():
