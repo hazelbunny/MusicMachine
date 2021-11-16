@@ -143,6 +143,7 @@
 
 
     "chords": {
+        "limit":1,
         "synths": {
             "chipbass": {
                 "weight": 100
@@ -212,15 +213,91 @@
         },
 
     "arpeggios": {
+        "limit":0,
         "": {}
     },
     "pads": {
+        "limit":0,
         "": {}
     },
     "melody": {
-        "": {}
+        "limit":4,
+        "octaves":[3,4],
+        "synths": {
+            "beep": {
+                "weight": 100
+            },
+            "prophet": {
+                "weight": 100
+            },
+            "piano": {
+                "weight": 100
+            },
+            "blade": {
+                "weight": 100
+            },
+            "chipbass": {
+                "weight": 100
+            },
+            "dpulse": {
+                "weight": 100
+            },
+            "dsaw": {
+                "weight": 100
+            },
+            "hoover": {
+                "weight": 100
+            },
+            "pulse": {
+                "weight": 100
+            },
+            "rodeo": {
+                "weight": 100
+            }
+            },
+        "patterns": [{
+                "weight": 100,
+                "pattern": [
+                    {
+                        "note":"root",
+                        "asdr":{
+                            "release":0.5},
+                        "chance":100
+                        },
+                    {},
+                    {"note":"random",
+                        "modifiers":{},
+                        "asdr":{
+                            "release":0.5},
+                        "chance":100},{},
+                    {"type":"random",
+                        "asdr":{
+                            "release":0.2},
+                        "chance":10},{},{}
+                ]
+            },
+            {
+                "weight": 200,
+                "pattern": [
+                    {
+                        "note":"random",
+                        "modifiers":{},
+                        "asdr":{
+                            "release":0.5},
+                        "chance":100
+                        },
+                        {},{"note":"random",
+                        "modifiers":{},
+                        "asdr":{
+                            "release":0.5},
+                        "chance":100},{}
+                ]
+            }
+
+        ]
     },
     "fx": {
+        "limit":0,
         "weight": 100,
         "limit": 2,
         "kick_samples": {

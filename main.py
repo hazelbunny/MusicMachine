@@ -8,6 +8,8 @@ from time import sleep
 from gpiozero import Button
 from DrumTrack import DrumTrack
 from ChordsTrack import ChordsTrack
+from MelodyClass import MelodyTrack
+import time
 
 
 
@@ -52,10 +54,19 @@ def delete_most_recent():
         delete_thread(tracklist.pop(len(tracklist)-1))
 
 def add_new_track():
-    if False:
+    drums = False
+    chords = False
+    for track in tracklist:
+        if type(track) == DrumTrack:
+            drums = True
+        if type(track) == ChordsTrack:
+            chords = True
+    if drums == False:
         tracklist.append(DrumTrack([templates,globals()]))
-    elif True:
+    elif chords == False:
         tracklist.append(ChordsTrack([templates,globals()]))
+    else:
+        tracklist.append(MelodyTrack([templates,globals()]))
     if DEBUG: print("new track: "+str(tracklist[len(tracklist)-1])+"with bars: "+str(tracklist[len(tracklist)-1].bars))
 
 def magic():
@@ -68,11 +79,11 @@ if GPIO_MODE:
     black_button.when_pressed = shuffle_most_recent
     brown_button.when_pressed = magic
 
+       
 
 chord_sequence=new_chord_sequence(KEY_SIGNATURE,KEY_TONALITY,CHORD_SEQUENCE_LENGTH)
 
 tracklist = []
-
 
 bar = 1
 print(chord_sequence)
