@@ -102,7 +102,7 @@ def delete_thread(to_go):
 @threaded
 def get_input():
     str_in = input().lower()
-    if str_in in ["+","add","blue","b","a"]:
+    if str_in in ["+","add","blue","b","a","plus","p"]:
         add_new_track()
     elif str_in in ["-","delete","del","red","r"]:
         delete_most_recent()
