@@ -15,7 +15,7 @@ class ChordsTrack(TrackClass.Track):
         self.chord_sequence =  self.config["chord_sequence"]
         self.bar_length = self.config["bar_length"]
         self.synth = Synth(musiclib.weighted_choice(self.template["synths"]))
-        print(self.synth.name)
+        #print(self.synth.name)
         self.num_of_bars = self.config["CHORD_SEQUENCE_LENGTH"]
         
         self.bars = []
@@ -52,12 +52,12 @@ class ChordsTrack(TrackClass.Track):
         for chord in chord_list:
             if chord !=None:
                 if musiclib.pc(chord["chance"]):
-                    print(str(self.chord_sequence[(global_bar%len(self.chord_sequence))-1]))
+                    #print(str(self.chord_sequence[(global_bar%len(self.chord_sequence))-1]))
                     for note in bar_notes:
                         synth(self.synth,note.number,**chord["asdr"])
                     for modifier in chord["modifiers"]:
                         if musiclib.pc(chord["modifiers"][modifier]):
-                            synth(self.synth,note=bar_notes[0]+Interval(modifier).number, **chord["asdr"])
+                            synth(self.synth,note=(bar_notes[0]+Interval(modifier)).number, **chord["asdr"])
                             break
             sleep(sleeptime)
             

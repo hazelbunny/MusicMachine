@@ -2,6 +2,7 @@ from os import path
 import json
 import random
 import musthe
+from time import sleep
 
 major_modifiers = {
     'maj':    120,
@@ -95,7 +96,7 @@ def threaded(fn):
 
 @threaded
 def delete_thread(to_go):
-    time.sleep(bar_length)
+    sleep(bar_length)
     del to_go
 #This function just stops Track threads being deleted while they are still playing.
 

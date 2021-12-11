@@ -12,7 +12,7 @@ class MelodyTrack(TrackClass.Track):
         
         self.bar_length = self.config["bar_length"]
         self.synth = Synth(musiclib.weighted_choice(self.template["synths"]))
-        print(self.synth.name)
+        #print(self.synth.name)
         self.num_of_bars = self.config["CHORD_SEQUENCE_LENGTH"]
         
         self.bars = []
@@ -62,6 +62,7 @@ class MelodyTrack(TrackClass.Track):
             if beat !=None:
                 if musiclib.pc(beat["chance"]):
                     synth(self.synth,beat["note"],**beat["asdr"])
+                    print(beat["note"])
             sleep(sleeptime)
             
             

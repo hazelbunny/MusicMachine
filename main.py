@@ -63,16 +63,21 @@ def add_new_track():
             drums = True
         if type(track) == ChordsTrack:
             chords = True
-    if drums == False:
+        if type(track) == MelodyTrack:
+            melody = True
+    if drums == False and chords == True and melody == True:
         tracklist.append(DrumTrack([templates,globals()]))
     elif chords == False:
         tracklist.append(ChordsTrack([templates,globals()]))
     else:
         tracklist.append(MelodyTrack([templates,globals()]))
-    if DEBUG: print("new track: "+str(tracklist[len(tracklist)-1])+"with bars: "+str(tracklist[len(tracklist)-1].bars))
+    print("new track: "+str(tracklist[len(tracklist)-1])+"with bars: "+str(tracklist[len(tracklist)-1].bars))
 
 def magic():
-    print("hello world")
+    print("Not yet implemented.")
+
+
+
 if GPIO_MODE:
     #Sets the GPIO pins which relate to the control panel. If you wish to execute this code on
     #A computer without GPIO out, remove this.
@@ -83,24 +88,29 @@ if GPIO_MODE:
 else:
     from pynput.keyboard import Key, Listener
     def on_press(key):
-        if key.char:
-            char = key.char
-            if char in ("+","p","a"):
-                add_new_track()
-            elif char in ("-","d","r"):
-                delete_most_recent()
-            elif char in ("s"):
-                shuffle_most_recent()
-            elif char in ("m"):
-                magic()
+        try:
+            if key.char:
+                char = key.char
+                if char in ("+","p","a"):
+                    add_new_track()
+                elif char in ("-","d","r"):
+                    delete_most_recent()
+                elif char in ("s"):
+                    shuffle_most_recent()
+                elif char in ("m"):
+                    magic()
+        except:
+            pass
     listener = Listener(
         on_press=on_press)
-    listener.start()
+    #listener.start() #remember to uncomment
        
 
 chord_sequence=new_chord_sequence(KEY_SIGNATURE,KEY_TONALITY,CHORD_SEQUENCE_LENGTH)
 
 tracklist = []
+tracklist.append(MelodyTrack([templates,globals()]))
+
 
 bar = 1
 print(chord_sequence)
