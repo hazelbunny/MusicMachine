@@ -2,6 +2,7 @@ from os import path
 import json
 import random
 import musthe
+import time
 
 major_modifiers = {
     'maj':    120,
@@ -14,6 +15,7 @@ minor_modifiers = {
     'min':    70,
     'min7':   50,
     }
+
 modifiers = {
     'dim':    10,
     'dim7':   2,
