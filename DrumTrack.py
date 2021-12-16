@@ -41,8 +41,6 @@ class DrumTrack(TrackClass.Track):
                         beat_array.append({self.open_hat_sample:beat[key]})
                     elif key == "hat_closed":
                         beat_array.append({self.closed_hat_sample:beat[key]})
-                    else:
-                        beat_array.append({Sample(key):beat[key]})
                 bar.append(beat_array)
             self.bars.append(bar)
     
