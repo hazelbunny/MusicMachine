@@ -35,13 +35,6 @@ bar_length = beat_length * TIME_SIGNATURE_TOP
 #Calculating how long beats and bars are.
 
 
-if GPIO_MODE:
-    from gpiozero import Button
-    blue_button = Button("GPIO21")
-    black_button = Button("GPIO16")
-    red_button = Button("GPIO20")
-    brown_button = Button("GPIO26")
-
 config = {}
 def set_config(new_config):
     config.update(new_config)
@@ -59,6 +52,7 @@ def add_new_track():
     drums = False
     chords = False
     for track in tracklist:
+        drums, chords, melody = False, False, False
         if type(track) == DrumTrack:
             drums = True
         if type(track) == ChordsTrack:
@@ -79,6 +73,11 @@ def magic():
 
 
 if GPIO_MODE:
+    from gpiozero import Button
+    blue_button = Button("GPIO21")
+    black_button = Button("GPIO16")
+    red_button = Button("GPIO20")
+    brown_button = Button("GPIO26")
     #Sets the GPIO pins which relate to the control panel. If you wish to execute this code on
     #A computer without GPIO out, remove this.
     blue_button.when_pressed = add_new_track
@@ -89,27 +88,25 @@ else:
     from pynput.keyboard import Key, Listener
     def on_press(key):
         try:
-            if key.char:
-                char = key.char
-                if char in ("+","p","a"):
-                    add_new_track()
-                elif char in ("-","d","r"):
-                    delete_most_recent()
-                elif char in ("s"):
-                    shuffle_most_recent()
-                elif char in ("m"):
-                    magic()
+            char = key.char
         except:
-            pass
+            char = None
+        if char in ("+","p","a"):
+            add_new_track()
+        elif char in ("-","d","r"):
+            delete_most_recent()
+        elif char in ("s"):
+            shuffle_most_recent()
+        elif char in ("m"):
+            magic()
     listener = Listener(
         on_press=on_press)
-    #listener.start() #remember to uncomment
+    listener.start()
        
 
 chord_sequence=new_chord_sequence(KEY_SIGNATURE,KEY_TONALITY,CHORD_SEQUENCE_LENGTH)
 
 tracklist = []
-tracklist.append(MelodyTrack([templates,globals()]))
 
 
 bar = 1

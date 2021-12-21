@@ -96,7 +96,7 @@ def threaded(fn):
 
 @threaded
 def delete_thread(to_go):
-    sleep(bar_length)
+    sleep(8)
     del to_go
 #This function just stops Track threads being deleted while they are still playing.
 
