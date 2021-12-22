@@ -277,9 +277,9 @@
                     {"type":"random",
                         "asdr":{
                             "release":0.2},
-                        "chance":10},{},{}
+                        "chance":10},{},{},{}
                 ]
-            },
+            },{"weight": 100, "pattern": [{"note": "random"}, {}, {"note": "root"}, {}, {"note": "interval", "degree": 2}, {"note": "interval", "degree": 5}, {"note": "interval", "degree": -2}, {"note": "interval", "degree": -1}]},{"weight": 100, "pattern": [{}, {}, {"note": "random"}, {"note": "interval", "degree": 4}, {"note": "root"}, {"note": "random"}, {}, {"note": "random"}]},{"weight": 100, "pattern": [{"note": "interval", "degree": 4}, {}, {"note": "root"}, {"note": "interval", "degree": -2}, {"note": "root"}, {"note": "interval", "degree": -2}, {}, {"note": "interval", "degree": 5}]},{"weight": 100, "pattern": [{}, {}, {"note": "interval", "degree": 3}, {"note": "interval", "degree": 3}, {"note": "random"}, {"note": "interval", "degree": 7}, {"note": "random"}, {"note": "interval", "degree": 4}]},
             {
                 "weight": 200,
                 "pattern": [
@@ -295,6 +295,24 @@
                         "asdr":{
                             "release":0.5},
                         "chance":100},{}
+                ]
+            },
+            {
+                "weight": 200,
+                "pattern": [
+                    {
+                        "note":"random",
+                        "modifiers":{},
+                        "asdr":{
+                            "release":0.5},
+                        "chance":100
+                        },
+                        {"note":"interval","degree":-2}
+                        ,{"note":"interval","degree":-1,
+                        "modifiers":{},
+                        "asdr":{
+                            "release":0.5},
+                        "chance":100},{},{},{},{},{}
                 ]
             }
 
