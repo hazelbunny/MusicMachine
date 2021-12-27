@@ -51,8 +51,8 @@ def delete_most_recent():
 def add_new_track():
     drums = False
     chords = False
+    drums, chords, melody = False, False, False
     for track in tracklist:
-        drums, chords, melody = False, False, False
         if type(track) == DrumTrack:
             drums = True
         if type(track) == ChordsTrack:
@@ -86,21 +86,34 @@ if GPIO_MODE:
     brown_button.when_pressed = magic
 else:
     from pynput.keyboard import Key, Listener
+    global active
+    active = True
     def on_press(key):
+        global active
+        if active == True:
+            active = False
+        else:
+            return
         try:
             char = key.char
         except:
             char = None
-        if char in ("+","p","a"):
+        if char in ("+","p","a",):
             add_new_track()
-        elif char in ("-","d","r"):
+        elif char in ("-","d","r",):
             delete_most_recent()
-        elif char in ("s"):
+        elif char in ("s",):
             shuffle_most_recent()
-        elif char in ("m"):
+        elif char in ("m",):
             magic()
+        if active:
+            global start
+            start = time.perf_counter()
+    def on_release(key):
+        global active
+        active = True
     listener = Listener(
-        on_press=on_press)
+        on_press=on_press,on_release=on_release)
     listener.start()
        
 

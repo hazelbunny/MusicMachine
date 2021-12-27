@@ -28,14 +28,22 @@ class MelodyTrack(TrackClass.Track):
         for i in range(0,self.num_of_bars-1):
             bar=[]
             working_bar=musiclib.return_pattern(self.template["patterns"])["pattern"]
+            cur_note=self.root
             for note_template in working_bar:
                 if "note" in note_template:
                     if note_template["note"] == "root":
-                        cur_note = self.root.number
+                        cur_note = self.root
                     elif note_template["note"] == "random":
-                        cur_note = self.get_note().number
+                        cur_note = self.get_note()
                     elif note_template["note"] == "interval":
-                        cur_note +=note_template["degree"]
+                        degree = note_template["degree"]
+                        _scale = Scale(self.root,self.tonality)[-24:24]
+                        if cur_note in _scale:
+                            position=_scale.index(cur_note)
+                            print("position: "+str(position))
+                            cur_note=_scale[position+degree]
+                        else:
+                            cur_note =_scale[degree]
                     else:
                         cur_note = self.get_note()
                     asdr,modifiers,chance={},{},100
@@ -45,7 +53,7 @@ class MelodyTrack(TrackClass.Track):
                         modifiers = note_template["modifiers"]
                     if "chance" in note_template:
                         chance = note_template["chance"]
-                    bar.append({"note":cur_note,"asdr":asdr,"modifiers":modifiers,"chance":chance})
+                    bar.append({"note":cur_note.number,"asdr":asdr,"modifiers":modifiers,"chance":chance})
             self.bars.append(bar)
     def get_note(self):
         _note = random.choice(Scale(self.root,self.tonality).notes)

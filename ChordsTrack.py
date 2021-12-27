@@ -33,6 +33,10 @@ class ChordsTrack(TrackClass.Track):
                         asdr,modifiers,chance={},{},100
                         if "asdr" in chord:
                             asdr = chord["asdr"]
+                            if "amp" in asdr:
+                                asdr["amp"]*=0.7
+                            else:
+                                asdr["amp"]=0.5
                         if "modifiers" in chord:
                             modifiers = chord["modifiers"]
                         if "chance" in chord:
