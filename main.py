@@ -41,7 +41,6 @@ def set_config(new_config):
 
 def shuffle_most_recent():
     if len(tracklist)>0:
-        tracklist[len(tracklist)-1].initialized=False
         tracklist[len(tracklist)-1].shuffle()
 
 def delete_most_recent():
@@ -65,10 +64,14 @@ def add_new_track():
         tracklist.append(ChordsTrack([templates,globals()]))
     else:
         tracklist.append(MelodyTrack([templates,globals()]))
-    print("new track: "+str(tracklist[len(tracklist)-1])+"with bars: "+str(tracklist[len(tracklist)-1].bars))
+    #print("new track: "+str(tracklist[len(tracklist)-1])+"with bars: "+str(tracklist[len(tracklist)-1].bars))
 
 def magic():
-    print("Not yet implemented.")
+    global chord_sequence
+    #print(new_chord_sequence(KEY_SIGNATURE,KEY_TONALITY,CHORD_SEQUENCE_LENGTH))
+    chord_sequence=new_chord_sequence(KEY_SIGNATURE,KEY_TONALITY,CHORD_SEQUENCE_LENGTH)
+    for track in tracklist:
+        track.shuffle()
 
 
 
@@ -102,13 +105,10 @@ else:
             add_new_track()
         elif char in ("-","d","r",):
             delete_most_recent()
-        elif char in ("s",):
+        elif char in ("s","*",):
             shuffle_most_recent()
-        elif char in ("m",):
+        elif char in ("m","/",):
             magic()
-        if active:
-            global start
-            start = time.perf_counter()
     def on_release(key):
         global active
         active = True
@@ -123,7 +123,7 @@ tracklist = []
 
 
 bar = 1
-print(chord_sequence)
+#print(chord_sequence)
 while True:
     for track in tracklist:
         track.tick(bar)
